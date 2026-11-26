@@ -1,0 +1,421 @@
+/* ==========================================================================
+   3DE-Agent Project Page — Interactive Gallery, Hero Carousel & Lightbox
+   ========================================================================== */
+
+const DEMOS = [
+  // Open-Ended Creative (19)
+  {
+    id: 'bear_hex_transparent',
+    scene: 'Bear',
+    shortLabel: 'Hex Cloaking Bear',
+    category: 'creative',
+    catLabel: 'Open-Ended Creative',
+    featured: true,
+    src: 'assets/videos/bear_hex_transparent.mp4',
+    prompt: 'Interleave the solid granite bear with scattered crisp hexagonal see-through windows revealing the reconstructed 3D trees and garden path directly behind it.'
+  },
+  {
+    id: 'bicycle_rain_lightning',
+    scene: 'Bicycle',
+    shortLabel: 'Storm Lightning Strike',
+    category: 'creative',
+    catLabel: 'Open-Ended Creative',
+    featured: true,
+    src: 'assets/videos/bicycle_rain_lightning.mp4',
+    prompt: 'Transform the park bicycle scene into a pouring thunderstorm where a photorealistic high-voltage lightning bolt strikes the wet black bench, casting wet specular reflections through falling rain.'
+  },
+  {
+    id: 'bear_transparent_glass',
+    scene: 'Bear',
+    shortLabel: 'Crystal Glass Bear',
+    category: 'creative',
+    catLabel: 'Open-Ended Creative',
+    featured: true,
+    src: 'assets/videos/bear_transparent_glass.mp4',
+    prompt: 'Turn the solid granite bear into a physically see-through crystal-clear glass sculpture revealing the reconstructed 3D trees, foliage, and walkway behind it with true 3D parallax.'
+  },
+  {
+    id: 'garden_lava_splash',
+    scene: 'Garden',
+    shortLabel: 'Lava Eruption & Scorch',
+    category: 'creative',
+    catLabel: 'Open-Ended Creative',
+    featured: true,
+    src: 'assets/videos/garden_lava_splash.mp4',
+    prompt: 'Turn the garden floor into cracked molten volcanic lava with a wide radial lava fountain erupting behind the table and heat-scorching the lava-facing edge of the wooden tabletop.'
+  },
+  {
+    id: 'trex_flesh_revival',
+    scene: 'T-Rex',
+    shortLabel: 'T-Rex Flesh Revival',
+    category: 'creative',
+    catLabel: 'Open-Ended Creative',
+    featured: true,
+    src: 'assets/videos/trex_flesh_revival.mp4',
+    prompt: 'Bring the front half of the museum T-Rex skeleton to life with photorealistic living dinosaur flesh, scales, and jaws while keeping the rear bones fossil.'
+  },
+  {
+    id: 'kitchen_voxel_rift',
+    scene: 'Kitchen',
+    shortLabel: 'Pixel-Voxel Rift',
+    category: 'creative',
+    catLabel: 'Open-Ended Creative',
+    featured: true,
+    src: 'assets/videos/kitchen_voxel_rift.mp4',
+    prompt: 'Tear a glowing purple dimensional rift through the center of the scene: keep the left side photorealistic while turning the right side into chunky 3D Minecraft pixel-voxel cubes.'
+  },
+  {
+    id: 'bicycle_exploded',
+    scene: 'Bicycle',
+    shortLabel: 'Exploded View + Clouds',
+    category: 'creative',
+    catLabel: 'Open-Ended Creative',
+    featured: true,
+    src: 'assets/videos/bicycle_exploded.mp4',
+    prompt: 'Disassemble the bicycle into floating mechanical parts in mid-air with fluffy white 3D cloud-sculpted lettering labeling each component.'
+  },
+  {
+    id: 'bear_nailong',
+    scene: 'Bear',
+    shortLabel: 'Nailong Rider',
+    category: 'creative',
+    catLabel: 'Open-Ended Creative',
+    featured: true,
+    src: 'assets/videos/bear_nailong.mp4',
+    prompt: 'Place a hilarious chubby yellow cartoon Nailong dragon wearing dark sunglasses riding proudly astride the granite bear statue\'s back.'
+  },
+  {
+    id: 'bear_underwater',
+    scene: 'Bear',
+    shortLabel: 'Bear Underwater',
+    category: 'creative',
+    catLabel: 'Open-Ended Creative',
+    featured: true,
+    src: 'assets/videos/bear_underwater.mp4',
+    prompt: 'Give the bear a pair of wings and transform the entire scene into an underwater environment.'
+  },
+  {
+    id: 'garden_portal',
+    scene: 'Garden',
+    shortLabel: 'Garden Portal',
+    category: 'creative',
+    catLabel: 'Open-Ended Creative',
+    featured: true,
+    src: 'assets/videos/garden_portal.mp4',
+    prompt: 'Create a magical portal, with half of the table and vase emerging through it from a palace-like scene.'
+  },
+  {
+    id: 'face_xianxia_dragon',
+    scene: 'Face',
+    shortLabel: 'Xianxia Dragon',
+    category: 'creative',
+    catLabel: 'Open-Ended Creative',
+    featured: true,
+    src: 'assets/videos/face_xianxia_dragon.mp4',
+    prompt: 'Close his eyes calmly, add a glowing golden rune on his forehead, coil a 3D golden-white dragon around his shoulders, and float a bronze rune halo behind his head.'
+  },
+  {
+    id: 'bicycle_enchanted',
+    scene: 'Bicycle',
+    shortLabel: 'Enchanted Forest',
+    category: 'creative',
+    catLabel: 'Open-Ended Creative',
+    featured: true,
+    src: 'assets/videos/bicycle_enchanted.mp4',
+    prompt: 'Turn the scene into a twilight enchanted forest, wrap warm fairy lights around the bicycle, and place a glowing glass lantern on the bench.'
+  },
+  {
+    id: 'horns_obsidian_lava',
+    scene: 'Horns',
+    shortLabel: 'Obsidian Lava',
+    category: 'creative',
+    catLabel: 'Open-Ended Creative',
+    featured: true,
+    src: 'assets/videos/horns_obsidian_lava.mp4',
+    prompt: 'Transform the triceratops skull into dark volcanic obsidian with glowing molten lava fissures, fiery eye sockets, and crackling lightning between its horns.'
+  },
+  {
+    id: 'kitchen_spotlight',
+    scene: 'Kitchen',
+    shortLabel: 'Purple Spotlight',
+    category: 'creative',
+    catLabel: 'Open-Ended Creative',
+    featured: true,
+    src: 'assets/videos/kitchen_spotlight.mp4',
+    prompt: 'Raise the bucket and give the excavator a purple stage spotlight, with a soft circle of light underneath.'
+  },
+  {
+    id: 'replica_cyberpunk',
+    scene: 'Replica',
+    shortLabel: 'Cyberpunk Solar',
+    category: 'creative',
+    catLabel: 'Open-Ended Creative',
+    src: 'assets/videos/replica_cyberpunk.mp4',
+    prompt: 'Turn the room into a dark cyberpunk night studio lit by magenta and cyan neon strips, with a glowing 3D holographic solar system above the table.'
+  },
+  {
+    id: 'face_cyber_splitbg',
+    scene: 'Face',
+    shortLabel: 'Split Cybernetic',
+    category: 'creative',
+    catLabel: 'Open-Ended Creative',
+    src: 'assets/videos/face_cyber_splitbg.mp4',
+    prompt: 'Transform the right half of his face, hair, neck, shoulder, and background into an exposed cybernetic android and sci-fi mechanical wall while keeping the left half natural.'
+  },
+  {
+    id: 'bear_petals',
+    scene: 'Bear',
+    shortLabel: 'Petal Shattering',
+    category: 'creative',
+    catLabel: 'Open-Ended Creative',
+    src: 'assets/videos/bear_petals.mp4',
+    prompt: 'Keep the front half of the granite bear intact while gradually shattering the rear half into floating granite shards and swirling pink cherry-blossom petals.'
+  },
+  {
+    id: 'trex_moss',
+    scene: 'T-Rex',
+    shortLabel: 'Moss & Mushrooms',
+    category: 'creative',
+    catLabel: 'Open-Ended Creative',
+    src: 'assets/videos/trex_moss.mp4',
+    prompt: 'Overgrow the T-Rex skeleton with photorealistic lush green moss, bioluminescent blue mushrooms, and hanging vines.'
+  },
+  {
+    id: 'stump_rockstar_fox',
+    scene: 'Stump',
+    shortLabel: 'Rockstar Fox',
+    category: 'creative',
+    catLabel: 'Open-Ended Creative',
+    src: 'assets/videos/stump_rockstar_fox.mp4',
+    prompt: 'Turn the stump scene into autumn and place a detailed cartoon fox wearing a black leather biker jacket and sunglasses holding an electric guitar.'
+  },
+
+  // Complex Benchmark (5)
+  {
+    id: 'garden_winter',
+    scene: 'Garden',
+    shortLabel: 'Garden Winter',
+    category: 'complex',
+    catLabel: 'Under-specified',
+    src: 'assets/videos/garden_winter.mp4',
+    prompt: 'This scene seems to be missing a bit of a winter feel.'
+  },
+  {
+    id: 'kitchen_faces',
+    scene: 'Kitchen',
+    shortLabel: 'Excavator Orientation',
+    category: 'complex',
+    catLabel: 'Under-specified',
+    src: 'assets/videos/kitchen_faces.mp4',
+    prompt: 'How about if the excavator faces on me?'
+  },
+  {
+    id: 'ramen_teatime',
+    scene: 'Ramen \u2192 Teatime',
+    shortLabel: 'Cross-Scene Ramen',
+    category: 'complex',
+    catLabel: 'Cross-scene',
+    src: 'assets/videos/ramen_teatime.mp4',
+    prompt: 'I want the sheep in the second scene to have the noodle from the first scene.'
+  },
+  {
+    id: 'person_pose',
+    scene: 'Person',
+    shortLabel: 'Multimodal Pose',
+    category: 'complex',
+    catLabel: 'Multimodal',
+    src: 'assets/videos/person_pose.mp4',
+    prompt: 'Let him be like: [reference pose image].'
+  },
+  {
+    id: 'face_clown',
+    scene: 'Face',
+    shortLabel: 'Clown Makeup',
+    category: 'complex',
+    catLabel: 'Appearance',
+    src: 'assets/videos/face_clown.mp4',
+    prompt: 'Turn the person into a clown with clown makeup and a fluffy, curly afro.'
+  },
+
+  // Simple Benchmark (2)
+  {
+    id: 'kitchen_apple',
+    scene: 'Kitchen',
+    shortLabel: 'Add Apple',
+    category: 'simple',
+    catLabel: 'Object Addition',
+    src: 'assets/videos/kitchen_apple.mp4',
+    prompt: 'Place an apple to the right of the excavator.'
+  },
+  {
+    id: 'garden_remove_vase',
+    scene: 'Garden',
+    shortLabel: 'Remove Vase',
+    category: 'simple',
+    catLabel: 'Object Removal',
+    src: 'assets/videos/garden_remove_vase.mp4',
+    prompt: 'Remove the vase and all its contents.'
+  }
+];
+
+/* ---------- Hero Featured Carousel (optional) ---------- */
+const featuredDemos = DEMOS.filter(d => d.featured);
+let heroIndex = 0;
+
+const heroVideo = document.getElementById('heroVideo');
+const heroScene = document.getElementById('heroScene');
+const heroCategory = document.getElementById('heroCategory');
+const heroPrompt = document.getElementById('heroPrompt');
+const heroPills = document.getElementById('heroPills');
+
+if (heroVideo && heroScene && heroCategory && heroPrompt && heroPills && featuredDemos.length > 0) {
+  function renderHero(idx) {
+    heroIndex = (idx + featuredDemos.length) % featuredDemos.length;
+    const item = featuredDemos[heroIndex];
+    heroVideo.src = item.src;
+    heroVideo.play().catch(() => {});
+    heroScene.textContent = item.scene;
+    heroCategory.textContent = item.catLabel;
+    heroCategory.className = 'cat-chip ' + (item.category === 'creative' ? 'creative' : '');
+    heroPrompt.textContent = '\u201c' + item.prompt + '\u201d';
+
+    Array.from(heroPills.children).forEach((btn, i) => {
+      btn.classList.toggle('active', i === heroIndex);
+    });
+  }
+
+  featuredDemos.forEach((item, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'hero-pill' + (i === 0 ? ' active' : '');
+    btn.textContent = item.shortLabel;
+    btn.addEventListener('click', () => renderHero(i));
+    heroPills.appendChild(btn);
+  });
+
+  document.getElementById('heroPrev').addEventListener('click', () => renderHero(heroIndex - 1));
+  document.getElementById('heroNext').addEventListener('click', () => renderHero(heroIndex + 1));
+  document.getElementById('heroExpand').addEventListener('click', () => openLightbox(featuredDemos[heroIndex]));
+
+  renderHero(0);
+}
+
+/* ---------- Demo Gallery Grid + Lazy Autoplay ---------- */
+const demoGrid = document.getElementById('demoGrid');
+
+const videoObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    const vid = entry.target;
+    if (entry.isIntersecting) {
+      if (!vid.src && vid.dataset.src) {
+        vid.src = vid.dataset.src;
+      }
+      vid.play().catch(() => {});
+    } else {
+      vid.pause();
+    }
+  });
+}, { rootMargin: '180px 0px', threshold: 0.1 });
+
+DEMOS.forEach(item => {
+  const card = document.createElement('article');
+  card.className = 'demo-card';
+
+  card.innerHTML = `
+    <div class="demo-video-box">
+      <video data-src="${item.src}" loop muted playsinline preload="none"></video>
+      <span class="demo-zoom-hint">Click to inspect</span>
+    </div>
+    <div class="demo-card-body">
+      <div class="demo-tags">
+        <span class="scene-chip">${item.scene}</span>
+      </div>
+      <p class="demo-prompt">\u201c${item.prompt}\u201d</p>
+    </div>
+  `;
+
+  const vid = card.querySelector('video');
+  videoObserver.observe(vid);
+  card.addEventListener('click', () => openLightbox(item));
+  demoGrid.appendChild(card);
+});
+
+/* ---------- Category Filter Buttons ---------- */
+const filterBtns = document.querySelectorAll('#demoFilters .filter-btn');
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.demo-card').forEach(card => {
+      const show = filter === 'all' || card.dataset.category === filter;
+      card.classList.toggle('hidden', !show);
+    });
+  });
+});
+
+/* ---------- Tab Groups (Method & Comparisons) ---------- */
+function initTabs(barId) {
+  const bar = document.getElementById(barId);
+  if (!bar) return;
+  const buttons = bar.querySelectorAll('.tab-btn');
+  const container = bar.nextElementSibling;
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const targetId = 'tab-' + btn.dataset.tab;
+      container.querySelectorAll('.tab-panel').forEach(panel => {
+        panel.classList.toggle('active', panel.id === targetId);
+      });
+    });
+  });
+}
+
+initTabs('methodTabs');
+initTabs('compTabs');
+
+/* ---------- Lightbox Modal ---------- */
+const lightbox = document.getElementById('lightbox');
+const lightboxVideo = document.getElementById('lightboxVideo');
+const lightboxScene = document.getElementById('lightboxScene');
+const lightboxCategory = document.getElementById('lightboxCategory');
+const lightboxPrompt = document.getElementById('lightboxPrompt');
+
+function openLightbox(item) {
+  lightboxVideo.src = item.src;
+  lightboxScene.textContent = item.scene;
+  if (lightboxCategory) {
+    lightboxCategory.textContent = '';
+  }
+  lightboxPrompt.textContent = '\u201c' + item.prompt + '\u201d';
+  lightbox.classList.add('open');
+  lightbox.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  lightboxVideo.play().catch(() => {});
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  lightbox.setAttribute('aria-hidden', 'true');
+  lightboxVideo.pause();
+  lightboxVideo.removeAttribute('src');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+document.getElementById('lightboxCloseBg').addEventListener('click', closeLightbox);
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && lightbox.classList.contains('open')) {
+    closeLightbox();
+  }
+});
+
+/* ---------- Copy BibTeX ---------- */
+const copyBtn = document.getElementById('copyBibtex');
+copyBtn.addEventListener('click', () => {
+  const code = document.getElementById('bibtexCode').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    copyBtn.textContent = 'Copied!';
+    setTimeout(() => { copyBtn.textContent = 'Copy'; }, 1800);
+  });
+});

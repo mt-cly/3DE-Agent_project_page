@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3DE-Agent: Toward Universal Instruction-Driven Agentic 3D Editing</title>
+  <meta name="description" content="3DE-Agent: Toward Universal Instruction-Driven Agentic 3D Editing via Feedback-Driven Tool Evolution and Data-Driven Refiner Learning." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Sticky Minimal Navigation (MIT HAN Lab style) -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#top" class="nav-brand">
+        <span class="brand-dot"></span>
+        <span>3DE-Agent</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#demos">Gallery</a>
+        <a href="#method">Method</a>
+        <a href="#bibtex">BibTeX</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero Header -->
+    <section class="hero-section">
+      <div class="container container-wide hero-inner">
+        <div class="venue-row">
+          <span class="venue-badge">Project Page</span>
+          <span class="venue-meta">Universal Agentic 3D Gaussian Editing</span>
+        </div>
+
+        <h1 class="paper-title">
+          <span class="title-accent">3DE-Agent:</span> Toward Universal Instruction-Driven Agentic 3D Editing
+        </h1>
+
+        <!-- Authors & Affiliations -->
+        <div class="authors-block">
+          <div class="authors-list">
+            <a href="https://scholar.google.com/citations?user=nMev-10AAAAJ" target="_blank" rel="noopener">Liyi Chen</a><sup>*</sup>,
+            <a href="https://scholar.google.com/citations?user=DxcLKZIAAAAJ" target="_blank" rel="noopener">Guowen Zhang</a><sup>*</sup>,
+            <a href="https://scholar.google.com/citations?user=zAAYwRYAAAAJ" target="_blank" rel="noopener">Pengfei Wang</a>,
+            <span>Zhiyuan Ma</span>,
+            <span>Yuhui Wu</span>,
+            <a href="https://www4.comp.polyu.edu.hk/~cslzhang/" target="_blank" rel="noopener">Lei Zhang</a><sup>&dagger;</sup>
+          </div>
+          <div class="affiliations">
+            The Hong Kong Polytechnic University
+          </div>
+          <div class="author-notes">
+            <span><sup>*</sup>Equal contribution</span>
+            <span class="note-sep">&middot;</span>
+            <span><sup>&dagger;</sup>Corresponding author</span>
+          </div>
+        </div>
+
+        <!-- Action Pill Buttons -->
+        <div class="action-buttons">
+          <a class="pill-btn pill-primary" href="#method">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <span>Paper (Coming Soon)</span>
+          </a>
+          <a class="pill-btn" href="#bibtex">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            <span>arXiv</span>
+          </a>
+          <a class="pill-btn" href="#method">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            <span>Code (Coming Soon)</span>
+          </a>
+          <a class="pill-btn" href="#demos">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span>26 Video Demos</span>
+          </a>
+        </div>
+
+        <!-- Hero Iconic Slogan Banner -->
+        <div class="hero-slogan">
+          <p class="slogan-headline">
+            <em><span class="slogan-highlight">(R)SI</span> Pushes 3D Editing into the Next Era.</em>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3D Editing Gallery -->
+    <section id="demos" class="section section-tinted">
+      <div class="container container-wide">
+        <div class="section-head">
+          <h2>3D Editing Gallery</h2>
+        </div>
+
+        <div class="demo-grid" id="demoGrid"></div>
+      </div>
+    </section>
+
+    <!-- Method Overview (Interactive Tabs with Paper Figures) -->
+    <section id="method" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Method Overview</h2>
+          <p class="section-sub">
+            Two complementary pillars: self-improving functional 3D tools and a data-driven multi-view Refiner.
+          </p>
+        </div>
+
+        <div class="tab-bar" id="methodTabs" role="tablist">
+          <button class="tab-btn active" data-tab="framework">1. Overall Framework</button>
+          <button class="tab-btn" data-tab="evolution">2. Tool Evolution (SI)</button>
+          <button class="tab-btn" data-tab="refiner">3. Refiner Learning</button>
+          <button class="tab-btn" data-tab="analysis">4. Training &amp; Inference</button>
+        </div>
+
+        <div class="tab-panels">
+          <div class="tab-panel active" id="tab-framework">
+            <figure class="paper-figure">
+              <img src="assets/images/method.png" alt="3DE-Agent overall framework" loading="lazy" />
+              <figcaption>
+                <strong>Overall framework of 3DE-Agent.</strong> During editing, 3DE-Agent operates under a <em>Plan&ndash;Execute&ndash;Verify</em> loop over its evolving tool library and invokes the multi-view Refiner when artifacts occur. During training, the <em>Edit&ndash;Diagnose&ndash;Evolve</em> loop diagnoses visual failures, tests parallel candidate tool updates in isolated sandboxes, and consolidates reusable lessons.
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="tab-panel" id="tab-evolution">
+            <figure class="paper-figure">
+              <img src="assets/images/tool_evolution.png" alt="Feedback-Driven Tool Evolution trajectory" loading="lazy" />
+              <figcaption>
+                <strong>Feedback-Driven Tool Evolution.</strong> Starting from raw off-the-shelf models (DA3, SAM3, TRELLIS.2, GPT-Image-2.5) and basic 3DGS primitives, 3DE-Agent autonomously evolves and consolidates specialized 3D editing tools—covering multi-view localization, preservation-aware removal, asset distillation &amp; harmonization, surface grounding, confident appearance fitting, and non-rigid deformation.
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="tab-panel" id="tab-refiner">
+            <figure class="paper-figure">
+              <img src="assets/images/data_pipeline.png" alt="Agentic pseudo-paired data curation pipeline for Refiner" loading="lazy" />
+              <figcaption>
+                <strong>Agentic Pseudo-Paired Data Curation &amp; Hybrid-Policy Self-Distillation.</strong> 3DE-Agent directly simulates its own inference failure modes—<em>missing-regions</em> (planar Gaussian carving) and <em>floating-Gaussians</em> (insert-and-remove cycles)—producing 10K view-consistent pseudo-paired training samples. The Refiner is trained via hybrid-policy self-distillation (on-policy high-noise steps + off-policy low-noise steps), enabling single-pass CFG-free inference.
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="tab-panel" id="tab-analysis">
+            <figure class="paper-figure">
+              <img src="assets/images/train_inference.png" alt="Training diagnosis and creative inference examples" loading="lazy" />
+              <figcaption>
+                <strong>Training &amp; inference analysis.</strong> (a) During training on <em>Book</em> ("Place a realistic Tyrannosaurus rex toy on the desk"), 3DE-Agent diagnoses appearance drift and missing contact shadows, evolving both generation and placement tools. (b) At inference on <em>Garden</em> ("This scene seems to be missing a bit of a winter feel"), 3DE-Agent goes beyond 2D recoloring by placing explicit 3D snow geometry onto the estimated table plane.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BibTeX Section -->
+    <section id="bibtex" class="section section-tinted">
+      <div class="container container-narrow">
+        <div class="section-head">
+          <h2>BibTeX</h2>
+        </div>
+        <div class="bibtex-card">
+          <button class="copy-btn" id="copyBibtex">Copy</button>
+          <pre><code id="bibtexCode">@article{chen20263deagent,
+  title   = {3DE-Agent: Toward Universal Instruction-Driven Agentic 3D Editing},
+  author  = {Chen, Liyi and Zhang, Guowen and Wang, Pengfei and Ma, Zhiyuan and Wu, Yuhui and Zhang, Lei},
+  journal = {arXiv preprint},
+  year    = {2026}
+}</code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p><strong>3DE-Agent</strong> &middot; Project Page</p>
+      <p class="footer-note">Layout inspired by clean academic project pages (MIT HAN Lab style). All videos are rendered directly from edited 3D Gaussian scenes.</p>
+    </div>
+  </footer>
+
+  <!-- Full-Screen Video Lightbox Modal -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Video preview">
+    <div class="lightbox-backdrop" id="lightboxCloseBg"></div>
+    <div class="lightbox-dialog">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+      <div class="lightbox-video-wrap">
+        <video id="lightboxVideo" controls autoplay loop muted playsinline></video>
+      </div>
+      <div class="lightbox-info">
+        <div class="lightbox-tags">
+          <span class="scene-chip" id="lightboxScene"></span>
+        </div>
+        <p id="lightboxPrompt"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
