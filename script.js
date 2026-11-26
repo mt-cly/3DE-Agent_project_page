@@ -178,64 +178,6 @@ const DEMOS = [
     catLabel: 'Open-Ended Creative',
     src: 'assets/videos/stump_rockstar_fox.mp4',
     prompt: 'Turn the stump scene into autumn and place a detailed cartoon fox wearing a black leather biker jacket and sunglasses holding an electric guitar.'
-  },
-
-  // Complex Benchmark (5)
-  {
-    id: 'garden_winter',
-    scene: 'Garden',
-    shortLabel: 'Garden Winter',
-    category: 'complex',
-    catLabel: 'Under-specified',
-    src: 'assets/videos/garden_winter.mp4',
-    prompt: 'This scene seems to be missing a bit of a winter feel.'
-  },
-  {
-    id: 'kitchen_faces',
-    scene: 'Kitchen',
-    shortLabel: 'Excavator Orientation',
-    category: 'complex',
-    catLabel: 'Under-specified',
-    src: 'assets/videos/kitchen_faces.mp4',
-    prompt: 'How about if the excavator faces on me?'
-  },
-  {
-    id: 'ramen_teatime',
-    scene: 'Ramen \u2192 Teatime',
-    shortLabel: 'Cross-Scene Ramen',
-    category: 'complex',
-    catLabel: 'Cross-scene',
-    src: 'assets/videos/ramen_teatime.mp4',
-    prompt: 'I want the sheep in the second scene to have the noodle from the first scene.'
-  },
-  {
-    id: 'person_pose',
-    scene: 'Person',
-    shortLabel: 'Multimodal Pose',
-    category: 'complex',
-    catLabel: 'Multimodal',
-    src: 'assets/videos/person_pose.mp4',
-    prompt: 'Let him be like: [reference pose image].'
-  },
-  {
-    id: 'face_clown',
-    scene: 'Face',
-    shortLabel: 'Clown Makeup',
-    category: 'complex',
-    catLabel: 'Appearance',
-    src: 'assets/videos/face_clown.mp4',
-    prompt: 'Turn the person into a clown with clown makeup and a fluffy, curly afro.'
-  },
-
-  // Simple Benchmark (1)
-  {
-    id: 'garden_remove_vase',
-    scene: 'Garden',
-    shortLabel: 'Remove Vase',
-    category: 'simple',
-    catLabel: 'Object Removal',
-    src: 'assets/videos/garden_remove_vase.mp4',
-    prompt: 'Remove the vase and all its contents.'
   }
 ];
 
