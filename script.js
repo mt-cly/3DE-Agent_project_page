@@ -280,51 +280,79 @@ if (heroVideo && heroScene && heroCategory && heroPrompt && heroPills && feature
   renderHero(0);
 }
 
-/* ---------- Demo Gallery Grid + Lazy Autoplay ---------- */
-const demoGrid = document.getElementById('demoGrid');
+/* ---------- CAT3D-Style Stage + Bottom Thumbnail Strip ---------- */
+const stageVideo = document.getElementById('stageVideo');
+const stageScene = document.getElementById('stageScene');
+const stagePrompt = document.getElementById('stagePrompt');
+const stageCounter = document.getElementById('stageCounter');
+const thumbTrack = document.getElementById('thumbTrack');
+let currentIdx = 0;
 
-const videoObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    const vid = entry.target;
-    if (entry.isIntersecting) {
-      if (!vid.getAttribute('src') && vid.dataset.src) {
-        vid.src = vid.dataset.src;
-        vid.load();
-      }
-      vid.play().catch(() => {});
-    } else {
-      vid.pause();
-      if (vid.getAttribute('src')) {
-        vid.removeAttribute('src');
-        vid.load();
-      }
-    }
+if (stageVideo && thumbTrack && DEMOS.length > 0) {
+  const thumbButtons = DEMOS.map((item, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'thumb-btn' + (i === 0 ? ' active' : '');
+    btn.type = 'button';
+    btn.setAttribute('role', 'tab');
+    btn.setAttribute('aria-label', `${item.scene}: ${item.shortLabel}`);
+    btn.innerHTML = `
+      <img src="assets/posters/${item.id}.jpg" alt="${item.shortLabel}" loading="${i < 10 ? 'eager' : 'lazy'}" />
+      <span class="thumb-label">${item.shortLabel}</span>
+    `;
+    btn.addEventListener('click', () => selectDemo(i, true));
+    thumbTrack.appendChild(btn);
+    return btn;
   });
-}, { rootMargin: '120px 0px', threshold: 0.05 });
 
-DEMOS.forEach(item => {
-  const card = document.createElement('article');
-  card.className = 'demo-card';
-  const poster = `assets/posters/${item.id}.jpg`;
+  function selectDemo(idx, scrollThumb = true) {
+    currentIdx = (idx + DEMOS.length) % DEMOS.length;
+    const item = DEMOS[currentIdx];
 
-  card.innerHTML = `
-    <div class="demo-video-box">
-      <video data-src="${item.src}" poster="${poster}" loop muted playsinline preload="none"></video>
-      <span class="demo-zoom-hint">Click to inspect</span>
-    </div>
-    <div class="demo-card-body">
-      <div class="demo-tags">
-        <span class="scene-chip">${item.scene}</span>
-      </div>
-      <p class="demo-prompt">\u201c${item.prompt}\u201d</p>
-    </div>
-  `;
+    stageVideo.poster = `assets/posters/${item.id}.jpg`;
+    stageVideo.src = item.src;
+    stageVideo.load();
+    stageVideo.play().catch(() => {});
 
-  const vid = card.querySelector('video');
-  videoObserver.observe(vid);
-  card.addEventListener('click', () => openLightbox(item));
-  demoGrid.appendChild(card);
-});
+    stageScene.textContent = item.scene;
+    stagePrompt.textContent = '\u201c' + item.prompt + '\u201d';
+    if (stageCounter) {
+      stageCounter.textContent = `${currentIdx + 1} / ${DEMOS.length}`;
+    }
+
+    thumbButtons.forEach((btn, i) => {
+      const isAct = i === currentIdx;
+      btn.classList.toggle('active', isAct);
+      btn.setAttribute('aria-selected', isAct ? 'true' : 'false');
+    });
+
+    if (scrollThumb && thumbButtons[currentIdx]) {
+      thumbButtons[currentIdx].scrollIntoView({
+        behavior: 'smooth',
+        inline: 'center',
+        block: 'nearest'
+      });
+    }
+  }
+
+  document.getElementById('stagePrev')?.addEventListener('click', () => selectDemo(currentIdx - 1));
+  document.getElementById('stageNext')?.addEventListener('click', () => selectDemo(currentIdx + 1));
+  document.getElementById('stageExpand')?.addEventListener('click', () => openLightbox(DEMOS[currentIdx]));
+
+  document.getElementById('thumbPrev')?.addEventListener('click', () => {
+    thumbTrack.scrollBy({ left: -380, behavior: 'smooth' });
+  });
+  document.getElementById('thumbNext')?.addEventListener('click', () => {
+    thumbTrack.scrollBy({ left: 380, behavior: 'smooth' });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (lightbox && lightbox.classList.contains('open')) return;
+    if (e.key === 'ArrowLeft') selectDemo(currentIdx - 1);
+    if (e.key === 'ArrowRight') selectDemo(currentIdx + 1);
+  });
+
+  selectDemo(0, false);
+}
 
 /* ---------- Category Filter Buttons ---------- */
 const filterBtns = document.querySelectorAll('#demoFilters .filter-btn');

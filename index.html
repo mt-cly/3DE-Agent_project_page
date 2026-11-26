@@ -88,14 +88,48 @@
       </div>
     </section>
 
-    <!-- 3D Editing Gallery -->
+    <!-- 3D Editing Gallery (CAT3D-style Stage + Thumbnail Strip) -->
     <section id="demos" class="section section-tinted">
       <div class="container container-wide">
-        <div class="section-head">
-          <h2>3D Editing Gallery</h2>
-        </div>
+        <div class="gallery-showcase">
+          <div class="gallery-showcase-head">
+            <h2>3D Editing Gallery</h2>
+            <span class="gallery-counter" id="stageCounter">1 / 24</span>
+          </div>
 
-        <div class="demo-grid" id="demoGrid"></div>
+          <div class="stage-frame">
+            <video id="stageVideo" autoplay loop muted playsinline preload="auto"></video>
+            <div class="stage-side-labels" aria-hidden="true">
+              <span class="side-pill">Original</span>
+              <span class="side-pill side-pill-edited">3DE-Agent</span>
+            </div>
+            <button class="stage-arrow prev" id="stagePrev" aria-label="Previous demo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" width="22" height="22"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button class="stage-arrow next" id="stageNext" aria-label="Next demo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" width="22" height="22"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <button class="stage-expand" id="stageExpand" aria-label="Inspect full screen">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+              <span>Full Screen</span>
+            </button>
+          </div>
+
+          <div class="stage-caption">
+            <span class="scene-chip" id="stageScene">Bear</span>
+            <p class="stage-prompt" id="stagePrompt"></p>
+          </div>
+
+          <div class="thumb-bar">
+            <button class="thumb-nav prev" id="thumbPrev" aria-label="Scroll thumbnails left">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" width="18" height="18"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <div class="thumb-track" id="thumbTrack" role="tablist" aria-label="Select 3D editing demo"></div>
+            <button class="thumb-nav next" id="thumbNext" aria-label="Scroll thumbnails right">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" width="18" height="18"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div>
       </div>
     </section>
 
