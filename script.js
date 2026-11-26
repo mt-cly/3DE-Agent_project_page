@@ -227,10 +227,34 @@ const stageVideo = document.getElementById('stageVideo');
 const stageScene = document.getElementById('stageScene');
 const stagePrompt = document.getElementById('stagePrompt');
 const stageCounter = document.getElementById('stageCounter');
+const stageLoader = document.getElementById('stageLoader');
 const thumbTrack = document.getElementById('thumbTrack');
 let currentIdx = 0;
 
+// In-memory Blob URL cache for instant zero-wait video switching
+const videoBlobCache = new Map();
+const videoInflight = new Map();
+
+function prefetchVideo(src) {
+  if (!src || videoBlobCache.has(src) || videoInflight.has(src)) return;
+  const p = fetch(src)
+    .then(r => (r.ok ? r.blob() : null))
+    .then(blob => {
+      if (blob) videoBlobCache.set(src, URL.createObjectURL(blob));
+    })
+    .catch(() => {})
+    .finally(() => videoInflight.delete(src));
+  videoInflight.set(src, p);
+}
+
 if (stageVideo && thumbTrack && DEMOS.length > 0) {
+  const showLoader = (on) => {
+    if (stageLoader) stageLoader.classList.toggle('visible', on);
+  };
+  stageVideo.addEventListener('waiting', () => showLoader(true));
+  stageVideo.addEventListener('playing', () => showLoader(false));
+  stageVideo.addEventListener('canplay', () => showLoader(false));
+
   const thumbButtons = DEMOS.map((item, i) => {
     const btn = document.createElement('button');
     btn.className = 'thumb-btn' + (i === 0 ? ' active' : '');
@@ -241,6 +265,7 @@ if (stageVideo && thumbTrack && DEMOS.length > 0) {
       <img src="assets/posters/${item.id}.jpg" alt="${item.shortLabel}" loading="${i < 10 ? 'eager' : 'lazy'}" />
       <span class="thumb-label">${item.shortLabel}</span>
     `;
+    btn.addEventListener('mouseenter', () => prefetchVideo(item.src));
     btn.addEventListener('click', () => selectDemo(i, true));
     thumbTrack.appendChild(btn);
     return btn;
@@ -250,10 +275,24 @@ if (stageVideo && thumbTrack && DEMOS.length > 0) {
     currentIdx = (idx + DEMOS.length) % DEMOS.length;
     const item = DEMOS[currentIdx];
 
+    const cachedUrl = videoBlobCache.get(item.src);
     stageVideo.poster = `assets/posters/${item.id}.jpg`;
-    stageVideo.src = item.src;
-    stageVideo.load();
+    if (cachedUrl) {
+      showLoader(false);
+      stageVideo.src = cachedUrl;
+    } else {
+      showLoader(true);
+      stageVideo.src = item.src;
+      prefetchVideo(item.src);
+    }
     stageVideo.play().catch(() => {});
+
+    // Warm next 2 and previous 1 demos in the background for instant switching
+    setTimeout(() => {
+      prefetchVideo(DEMOS[(currentIdx + 1) % DEMOS.length].src);
+      prefetchVideo(DEMOS[(currentIdx + 2) % DEMOS.length].src);
+      prefetchVideo(DEMOS[(currentIdx - 1 + DEMOS.length) % DEMOS.length].src);
+    }, 250);
 
     stageScene.textContent = item.scene;
     stagePrompt.textContent = '\u201c' + item.prompt + '\u201d';
@@ -278,7 +317,16 @@ if (stageVideo && thumbTrack && DEMOS.length > 0) {
 
   document.getElementById('stagePrev')?.addEventListener('click', () => selectDemo(currentIdx - 1));
   document.getElementById('stageNext')?.addEventListener('click', () => selectDemo(currentIdx + 1));
-  document.getElementById('stageExpand')?.addEventListener('click', () => openLightbox(DEMOS[currentIdx]));
+  document.getElementById('stageExpand')?.addEventListener('click', () => {
+    const req = stageVideo.requestFullscreen || stageVideo.webkitRequestFullscreen || stageVideo.msRequestFullscreen;
+    if (req) {
+      Promise.resolve(req.call(stageVideo)).catch(() => openLightbox(DEMOS[currentIdx]));
+    } else if (stageVideo.webkitEnterFullscreen) {
+      stageVideo.webkitEnterFullscreen();
+    } else {
+      openLightbox(DEMOS[currentIdx]);
+    }
+  });
 
   document.getElementById('thumbPrev')?.addEventListener('click', () => {
     thumbTrack.scrollBy({ left: -380, behavior: 'smooth' });
