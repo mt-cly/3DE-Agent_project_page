@@ -230,6 +230,8 @@ const stageCounter = document.getElementById('stageCounter');
 const stageLoader = document.getElementById('stageLoader');
 const thumbTrack = document.getElementById('thumbTrack');
 let currentIdx = 0;
+let loopCount = 0;
+const LOOPS_PER_DEMO = 3;
 
 // In-memory Blob URL cache for instant zero-wait video switching
 const videoBlobCache = new Map();
@@ -254,6 +256,15 @@ if (stageVideo && thumbTrack && DEMOS.length > 0) {
   stageVideo.addEventListener('waiting', () => showLoader(true));
   stageVideo.addEventListener('playing', () => showLoader(false));
   stageVideo.addEventListener('canplay', () => showLoader(false));
+  stageVideo.addEventListener('ended', () => {
+    loopCount += 1;
+    if (loopCount >= LOOPS_PER_DEMO) {
+      selectDemo(currentIdx + 1, true);
+    } else {
+      stageVideo.currentTime = 0;
+      stageVideo.play().catch(() => {});
+    }
+  });
 
   const thumbButtons = DEMOS.map((item, i) => {
     const btn = document.createElement('button');
@@ -273,6 +284,7 @@ if (stageVideo && thumbTrack && DEMOS.length > 0) {
 
   function selectDemo(idx, scrollThumb = true) {
     currentIdx = (idx + DEMOS.length) % DEMOS.length;
+    loopCount = 0;
     const item = DEMOS[currentIdx];
 
     const cachedUrl = videoBlobCache.get(item.src);
