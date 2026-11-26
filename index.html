@@ -119,7 +119,7 @@
         <div class="tab-panels">
           <div class="tab-panel active" id="tab-framework">
             <figure class="paper-figure">
-              <img src="assets/images/method.png" alt="3DE-Agent overall framework" loading="lazy" />
+              <img src="assets/images/method.webp" alt="3DE-Agent overall framework" loading="lazy" />
               <figcaption>
                 <strong>Overall framework of 3DE-Agent.</strong> During editing, 3DE-Agent operates under a <em>Plan&ndash;Execute&ndash;Verify</em> loop over its evolving tool library and invokes the multi-view Refiner when artifacts occur. During training, the <em>Edit&ndash;Diagnose&ndash;Evolve</em> loop diagnoses visual failures, tests parallel candidate tool updates in isolated sandboxes, and consolidates reusable lessons.
               </figcaption>
@@ -128,7 +128,7 @@
 
           <div class="tab-panel" id="tab-evolution">
             <figure class="paper-figure">
-              <img src="assets/images/tool_evolution.png" alt="Feedback-Driven Tool Evolution trajectory" loading="lazy" />
+              <img src="assets/images/tool_evolution.webp" alt="Feedback-Driven Tool Evolution trajectory" loading="lazy" />
               <figcaption>
                 <strong>Feedback-Driven Tool Evolution.</strong> Starting from raw off-the-shelf models (DA3, SAM3, TRELLIS.2, GPT-Image-2.5) and basic 3DGS primitives, 3DE-Agent autonomously evolves and consolidates specialized 3D editing tools—covering multi-view localization, preservation-aware removal, asset distillation &amp; harmonization, surface grounding, confident appearance fitting, and non-rigid deformation.
               </figcaption>
@@ -137,7 +137,7 @@
 
           <div class="tab-panel" id="tab-refiner">
             <figure class="paper-figure">
-              <img src="assets/images/data_pipeline.png" alt="Agentic pseudo-paired data curation pipeline for Refiner" loading="lazy" />
+              <img src="assets/images/data_pipeline.webp" alt="Agentic pseudo-paired data curation pipeline for Refiner" loading="lazy" />
               <figcaption>
                 <strong>Agentic Pseudo-Paired Data Curation &amp; Hybrid-Policy Self-Distillation.</strong> 3DE-Agent directly simulates its own inference failure modes—<em>missing-regions</em> (planar Gaussian carving) and <em>floating-Gaussians</em> (insert-and-remove cycles)—producing 10K view-consistent pseudo-paired training samples. The Refiner is trained via hybrid-policy self-distillation (on-policy high-noise steps + off-policy low-noise steps), enabling single-pass CFG-free inference.
               </figcaption>
@@ -146,7 +146,7 @@
 
           <div class="tab-panel" id="tab-analysis">
             <figure class="paper-figure">
-              <img src="assets/images/train_inference.png" alt="Training diagnosis and creative inference examples" loading="lazy" />
+              <img src="assets/images/train_inference.webp" alt="Training diagnosis and creative inference examples" loading="lazy" />
               <figcaption>
                 <strong>Training &amp; inference analysis.</strong> (a) During training on <em>Book</em> ("Place a realistic Tyrannosaurus rex toy on the desk"), 3DE-Agent diagnoses appearance drift and missing contact shadows, evolving both generation and placement tools. (b) At inference on <em>Garden</em> ("This scene seems to be missing a bit of a winter feel"), 3DE-Agent goes beyond 2D recoloring by placing explicit 3D snow geometry onto the estimated table plane.
               </figcaption>

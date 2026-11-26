@@ -287,23 +287,29 @@ const videoObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     const vid = entry.target;
     if (entry.isIntersecting) {
-      if (!vid.src && vid.dataset.src) {
+      if (!vid.getAttribute('src') && vid.dataset.src) {
         vid.src = vid.dataset.src;
+        vid.load();
       }
       vid.play().catch(() => {});
     } else {
       vid.pause();
+      if (vid.getAttribute('src')) {
+        vid.removeAttribute('src');
+        vid.load();
+      }
     }
   });
-}, { rootMargin: '180px 0px', threshold: 0.1 });
+}, { rootMargin: '120px 0px', threshold: 0.05 });
 
 DEMOS.forEach(item => {
   const card = document.createElement('article');
   card.className = 'demo-card';
+  const poster = `assets/posters/${item.id}.jpg`;
 
   card.innerHTML = `
     <div class="demo-video-box">
-      <video data-src="${item.src}" loop muted playsinline preload="none"></video>
+      <video data-src="${item.src}" poster="${poster}" loop muted playsinline preload="none"></video>
       <span class="demo-zoom-hint">Click to inspect</span>
     </div>
     <div class="demo-card-body">
