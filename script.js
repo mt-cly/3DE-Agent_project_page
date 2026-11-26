@@ -25,16 +25,6 @@ const DEMOS = [
     prompt: 'Transform the park bicycle scene into a pouring thunderstorm where a photorealistic high-voltage lightning bolt strikes the wet black bench, casting wet specular reflections through falling rain.'
   },
   {
-    id: 'bear_transparent_glass',
-    scene: 'Bear',
-    shortLabel: 'Crystal Glass Bear',
-    category: 'creative',
-    catLabel: 'Open-Ended Creative',
-    featured: true,
-    src: 'assets/videos/bear_transparent_glass.mp4',
-    prompt: 'Turn the solid granite bear into a physically see-through crystal-clear glass sculpture revealing the reconstructed 3D trees, foliage, and walkway behind it with true 3D parallax.'
-  },
-  {
     id: 'garden_lava_splash',
     scene: 'Garden',
     shortLabel: 'Lava Eruption & Scorch',
@@ -237,16 +227,7 @@ const DEMOS = [
     prompt: 'Turn the person into a clown with clown makeup and a fluffy, curly afro.'
   },
 
-  // Simple Benchmark (2)
-  {
-    id: 'kitchen_apple',
-    scene: 'Kitchen',
-    shortLabel: 'Add Apple',
-    category: 'simple',
-    catLabel: 'Object Addition',
-    src: 'assets/videos/kitchen_apple.mp4',
-    prompt: 'Place an apple to the right of the excavator.'
-  },
+  // Simple Benchmark (1)
   {
     id: 'garden_remove_vase',
     scene: 'Garden',
