@@ -178,6 +178,37 @@ const DEMOS = [
     catLabel: 'Open-Ended Creative',
     src: 'assets/videos/stump_rockstar_fox.mp4',
     prompt: 'Turn the stump scene into autumn and place a detailed cartoon fox wearing a black leather biker jacket and sunglasses holding an electric guitar.'
+  },
+  // 4D Autonomous Driving (3)
+  {
+    id: 'waymo4d_winter_snow',
+    scene: 'Waymo 4D',
+    shortLabel: '4D Winter Snowstorm',
+    category: 'creative',
+    catLabel: '4D Autonomous Driving',
+    featured: true,
+    src: 'assets/videos/waymo4d_winter_snow.mp4',
+    prompt: 'Transform the dynamic 4D San Francisco avenue into a winter snowstorm: blanket the asphalt road, bike lane, sidewalks, trees, and roofs with realistic snow and slushy tire tracks while preserving all moving vehicles.'
+  },
+  {
+    id: 'waymo4d_autumn_golden',
+    scene: 'Waymo 4D',
+    shortLabel: '4D Golden Autumn',
+    category: 'creative',
+    catLabel: '4D Autonomous Driving',
+    featured: true,
+    src: 'assets/videos/waymo4d_autumn_golden.mp4',
+    prompt: 'Transform the dynamic 4D downtown San Francisco street into a golden-hour autumn afternoon with vibrant amber-crimson foliage, fallen leaves along the curbs, and warm sunset lighting across the moving traffic.'
+  },
+  {
+    id: 'waymo4d_construction_cones',
+    scene: 'Waymo 4D',
+    shortLabel: '4D Roadside Cones',
+    category: 'creative',
+    catLabel: '4D Autonomous Driving',
+    featured: true,
+    src: 'assets/videos/waymo4d_construction_cones.mp4',
+    prompt: 'Place a photorealistic tapering row of weathered orange-and-white reflective highway traffic cones along the far-right bike lane and curb, clear of the ego vehicle and oncoming 4D traffic.'
   }
 ];
 
