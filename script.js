@@ -209,6 +209,108 @@ const DEMOS = [
     featured: true,
     src: 'assets/videos/waymo4d_construction_cones.mp4',
     prompt: 'Place a photorealistic tapering row of weathered orange-and-white reflective highway traffic cones along the far-right bike lane and curb, clear of the ego vehicle and oncoming 4D traffic.'
+  },
+  // Autonomous Driving (8)
+  {
+    id: 'waymo_ad_gravel',
+    scene: 'Waymo',
+    shortLabel: 'Potholed Gravel Road',
+    category: 'creative',
+    catLabel: 'Autonomous Driving',
+    src: 'assets/videos/waymo_ad_gravel.mp4',
+    prompt: 'Transform the smooth asphalt road surface into a rough, bumpy, potholed gravel and cobblestone dirt road with tire ruts while preserving the dappled tree shadows, curbs, houses, and sky.'
+  },
+  {
+    id: 'waymo_ad_traffic_light',
+    scene: 'Waymo',
+    shortLabel: 'Traffic Light & Crosswalk',
+    category: 'creative',
+    catLabel: 'Autonomous Driving',
+    src: 'assets/videos/waymo_ad_traffic_light.mp4',
+    prompt: 'Add a galvanized steel cantilever traffic light pole with a glowing signal head at the intersection ahead together with a crisp white painted zebra crosswalk across the asphalt road.'
+  },
+  {
+    id: 'waymo_s1_remove_suv',
+    scene: 'Waymo',
+    shortLabel: 'Remove Parked SUV',
+    category: 'creative',
+    catLabel: 'Autonomous Driving',
+    src: 'assets/videos/waymo_s1_remove_suv.mp4',
+    prompt: 'Cleanly remove the large silver SUV parked on the left side of the curved street and seamlessly inpaint the occluded asphalt, concrete curb, driveway, and background fence.'
+  },
+  {
+    id: 'waymo_s2_night',
+    scene: 'Waymo',
+    shortLabel: 'Nighttime Headlights',
+    category: 'creative',
+    catLabel: 'Autonomous Driving',
+    src: 'assets/videos/waymo_s2_night.mp4',
+    prompt: 'Transform the daytime San Francisco hillside STOP intersection into a dark nighttime driving scene with glowing streetlamps, illuminated house windows, and bright ego-car headlight beams.'
+  },
+  {
+    id: 'waymo_s3_flooded',
+    scene: 'Waymo',
+    shortLabel: 'Flooded Rainwater Road',
+    category: 'creative',
+    catLabel: 'Autonomous Driving',
+    src: 'assets/videos/waymo_s3_flooded.mp4',
+    prompt: 'Flood the curved boulevard with standing rainwater reflecting the trees, retaining wall, and overcast rainy sky while keeping the double-yellow center line faintly visible beneath shallow water.'
+  },
+  {
+    id: 'waymo_s4_sandstorm',
+    scene: 'Waymo',
+    shortLabel: 'Extreme Sandstorm',
+    category: 'creative',
+    catLabel: 'Autonomous Driving',
+    src: 'assets/videos/waymo_s4_sandstorm.mp4',
+    prompt: 'Envelop the twilight palm-tree avenue in an extreme desert sandstorm with thick ochre-orange dust haze, strong depth-dependent visibility dropoff, and sand drifts along the curbs.'
+  },
+  {
+    id: 'waymo_s4_wet_night',
+    scene: 'Waymo',
+    shortLabel: 'Wet Night Reflections',
+    category: 'creative',
+    catLabel: 'Autonomous Driving',
+    src: 'assets/videos/waymo_s4_wet_night.mp4',
+    prompt: 'Transform the pastel-dusk palm avenue into a moody wet night scene with warm amber streetlights and lit house windows reflecting softly off the damp cracked asphalt.'
+  },
+  {
+    id: 'waymo_s5_police',
+    scene: 'Waymo',
+    shortLabel: 'Pickup to Police Cruiser',
+    category: 'creative',
+    catLabel: 'Autonomous Driving',
+    src: 'assets/videos/waymo_s5_police.mp4',
+    prompt: 'Transform the burgundy pickup truck parked on the right curb into a black-and-white American police patrol cruiser with a roof lightbar casting subtle red-and-blue reflections.'
+  },
+  // Embodied AI (3)
+  {
+    id: 'emb_e1_franka_clutter',
+    scene: 'Franka 4D',
+    shortLabel: '4D Franka Kitchen Clutter',
+    category: 'creative',
+    catLabel: 'Embodied AI',
+    featured: true,
+    src: 'assets/videos/emb_e1_franka_clutter.mp4',
+    prompt: 'Add realistic kitchen distractor objects (ceramic mug, stainless-steel bowl, green apple, cutting board) around the manipulation table edges while replaying the 4D Franka Panda arm grasping the carrot.'
+  },
+  {
+    id: 'emb_e2_nordic_home',
+    scene: 'Home Table',
+    shortLabel: 'Nordic Minimalist Room',
+    category: 'creative',
+    catLabel: 'Embodied AI',
+    src: 'assets/videos/emb_e2_nordic_home.mp4',
+    prompt: 'Restyle the indoor dining room into a bright Scandinavian minimalist aesthetic with light bleached oak furniture, soft beige linen accents, warm matte white walls, and airy daylight.'
+  },
+  {
+    id: 'emb_e3_factory_lanes',
+    scene: 'Factory',
+    shortLabel: 'Factory Epoxy Safety Lanes',
+    category: 'creative',
+    catLabel: 'Embodied AI',
+    src: 'assets/videos/emb_e3_factory_lanes.mp4',
+    prompt: 'Transform the bare concrete factory floor into an industrial green-epoxy coated workshop floor with glossy sheen and bold yellow AGV robot safety corridor stripes.'
   }
 ];
 
